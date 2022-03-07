@@ -1,22 +1,23 @@
-
 package com.plexpt;
 
 import com.plexpt.config.I18N;
+
+import org.apache.log4j.Logger;
+
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-import org.apache.log4j.Logger;
 
 /**
  * MenuBar class.
  *
  * @author Nafaa Friaa (nafaa.friaa@isetjb.rnu.tn)
  */
-public class MenuBar extends JMenuBar
-{
+public class MenuBar extends JMenuBar {
     final static Logger log = Logger.getLogger(MenuBar.class);
 
     // file :
@@ -31,27 +32,29 @@ public class MenuBar extends JMenuBar
     /**
      * Constructor.
      */
-    public MenuBar()
-    {
+    public MenuBar() {
         log.debug("START constructor...");
 
         // file :
         add(jMenuFile);
         jMenuFile.setMnemonic(KeyEvent.VK_F);
 
-        jMenuItemFrame1.setAccelerator(KeyStroke.getKeyStroke('R', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        jMenuItemFrame1.setAccelerator(KeyStroke.getKeyStroke('R',
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         jMenuFile.add(jMenuItemFrame1);
 
         jMenuFile.addSeparator();
 
-        jMenuItemQuit.setAccelerator(KeyStroke.getKeyStroke('Q', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        jMenuItemQuit.setAccelerator(KeyStroke.getKeyStroke('Q',
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         jMenuFile.add(jMenuItemQuit);
 
         // help :
         add(jMenuHelp);
         jMenuHelp.setMnemonic(KeyEvent.VK_H);
 
-        jMenuItemFrameAbout.setAccelerator(KeyStroke.getKeyStroke('A', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        jMenuItemFrameAbout.setAccelerator(KeyStroke.getKeyStroke('A',
+                Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         jMenuHelp.add(jMenuItemFrameAbout);
 
         log.debug("End of constructor.");

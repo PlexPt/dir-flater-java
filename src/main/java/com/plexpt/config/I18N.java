@@ -5,18 +5,18 @@
  */
 package com.plexpt.config;
 
+import org.apache.log4j.Logger;
+
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import org.apache.log4j.Logger;
 
 /**
  * I18N Singleton class for Internationalization.
  *
  * @author Nafaa Friaa (nafaa.friaa@isetjb.rnu.tn)
  */
-public class I18N
-{
+public class I18N {
     final static Logger log = Logger.getLogger(I18N.class);
 
     private static Locale locale;
@@ -26,8 +26,7 @@ public class I18N
     /**
      * Private constructor so this class cannot be instantiated only by it self.
      */
-    private I18N()
-    {
+    private I18N() {
     }
 
     /**
@@ -35,21 +34,17 @@ public class I18N
      *
      * @return The ResourceBundle object if not exist.
      */
-    public static ResourceBundle getInstance()
-    {
-        if (messages == null)
-        {
+    public static ResourceBundle getInstance() {
+        if (messages == null) {
             log.debug("Internationalization settings...");
-            try
-            {
+            try {
                 // user default Locale :
                 locale = Locale.getDefault();
 
                 log.info("Default user Locale : " + locale.getLanguage() + "_" + locale.getCountry());
 
                 messages = ResourceBundle.getBundle("messages", locale);
-            } catch (MissingResourceException e)
-            {
+            } catch (MissingResourceException e) {
                 log.error("Cannot configure Locale, missing resources file => " + e);
                 System.exit(0);
             }
@@ -66,15 +61,12 @@ public class I18N
      * @param key
      * @return The string value of given key.
      */
-    public static String lang(String key)
-    {
+    public static String lang(String key) {
         String value = "KEY_NOT_FOUND";
 
-        try
-        {
+        try {
             value = I18N.getInstance().getString(key);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             log.error("Cannot find value for this key : " + key);
         }
 
@@ -84,10 +76,8 @@ public class I18N
     /**
      * Create the instance for the first time.
      */
-    public static void init()
-    {
-        if (I18N.getInstance() != null)
-        {
+    public static void init() {
+        if (I18N.getInstance() != null) {
             log.info("Locale configured successfully to : " + I18N.lang("tag"));
         }
     }

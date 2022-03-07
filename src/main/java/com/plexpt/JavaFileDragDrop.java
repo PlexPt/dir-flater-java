@@ -102,10 +102,13 @@ public class JavaFileDragDrop extends JFrame {
         this.setVisible(true);
     }
 
+    public static void main(String[] args) {
+        new JavaFileDragDrop();
+    }
+
     private void appendText(String text) {
         textArea.append("\n" + text);
     }
-
 
     private void moveFile(File dir) {
         File dir2 = new File(dir.getAbsolutePath() + "2");
@@ -131,9 +134,5 @@ public class JavaFileDragDrop extends JFrame {
                 appendText(e.toString());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new JavaFileDragDrop();
     }
 }

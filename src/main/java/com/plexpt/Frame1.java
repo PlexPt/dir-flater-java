@@ -1,20 +1,21 @@
-
 package com.plexpt;
 
 import com.plexpt.config.I18N;
+
+import org.apache.log4j.Logger;
+
 import java.awt.FlowLayout;
 import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
-import org.apache.log4j.Logger;
 
 /**
  * Frame1 class.
  *
  * @author Nafaa Friaa (nafaa.friaa@isetjb.rnu.tn)
  */
-public class Frame1 extends JInternalFrame
-{
+public class Frame1 extends JInternalFrame {
     final static Logger log = Logger.getLogger(Frame1.class);
 
     JButton jButton1 = new JButton(" Test >> ");
@@ -22,8 +23,7 @@ public class Frame1 extends JInternalFrame
     /**
      * Constructor.
      */
-    public Frame1()
-    {
+    public Frame1() {
         log.debug("START constructor...");
 
         setTitle(I18N.lang("frame1.title"));
