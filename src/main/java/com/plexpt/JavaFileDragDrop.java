@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 
 import cn.hutool.core.io.FileUtil;
@@ -58,7 +59,7 @@ public class JavaFileDragDrop extends JFrame {
 
                         moveFile(file);
                         appendText("处理完成" + file.getAbsolutePath());
-
+//                        textArea.setAutoscrolls(true);
                         dtde.dropComplete(true);
                     } else {
                         dtde.rejectDrop();
@@ -76,12 +77,12 @@ public class JavaFileDragDrop extends JFrame {
                 screenSize.height / 2);
 
         textArea.setLineWrap(true);    //设置文本域中的文本为自动换行
-        JScrollPane scrollPane = new JScrollPane(textArea);    //将文本域放入滚动窗口
-
+        JScrollPane scrollPane = new JScrollPane();    //将文本域放入滚动窗口
+        scrollPane.setViewportView(textArea);
         Dimension size = textArea.getPreferredSize();    //获得文本域的首选大小
         scrollPane.setBounds(1, 1, screenSize.width / 2,
                 screenSize.height / 2);
-
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         JPanel panel = new JPanel();    //创建一个JPanel对象
         panel.add(scrollPane);    //将JScrollPane添加到JPanel容器中
 
@@ -102,7 +103,7 @@ public class JavaFileDragDrop extends JFrame {
     }
 
     private void appendText(String text) {
-        textArea.setText(textArea.getText() + "\n" + text);
+        textArea.append("\n" + text);
     }
 
 
@@ -118,8 +119,8 @@ public class JavaFileDragDrop extends JFrame {
 
             File file1 = new File(dir2, fileName);
 
-            if (file1.exists()) {
-                file1 = new File(dir2, "2" + fileName);
+            while (file1.exists()) {
+                file1 = new File(dir2, "2" + file1.getName());
             }
 
             try {
@@ -127,7 +128,7 @@ public class JavaFileDragDrop extends JFrame {
                         FileSystems.getDefault().getPath(file.getAbsolutePath()));
             } catch (IOException e) {
                 e.printStackTrace();
-
+                appendText(e.toString());
             }
         }
     }
